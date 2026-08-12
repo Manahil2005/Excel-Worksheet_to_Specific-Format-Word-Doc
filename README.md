@@ -1,7 +1,7 @@
 # SPI Weekly Summary Generator
 
 Turns the weekly Sensitive Price Indicator (SPI) Excel worksheet into a fully
-formatted **"Brief on Weekly Inflation"** Word document — automatically, with
+formatted **"Brief on Weekly Inflation"** Word document, automatically, with
 no manual copy-pasting of numbers into a report template.
 
 Give it `Worksheet_DD_MM_YYYY.xlsx`, and it produces
@@ -37,11 +37,11 @@ Finally, it fills all of this into `spi_template.docx` (a Word template with
 
 | File | Purpose |
 |---|---|
-| `generate_spi_summary.py` | Core script — reads the worksheet, updates history, fills the template, writes the `.docx`. |
+| `generate_spi_summary.py` | Core script, reads the worksheet, updates history, fills the template, writes the `.docx`. |
 | `spi_template.docx` | Word template with `{{PLACEHOLDER}}` tokens that the script fills in. |
 | `spi_history.csv` | Rolling history of weekly quintile % changes (auto-updated on every run). |
-| `app.py` | Optional local web UI — drag-and-drop the worksheet in a browser instead of using the command line. |
-| `watch_and_generate.py` | Optional folder-watcher — auto-regenerates the summary whenever any `.xlsx` in a folder changes. |
+| `app.py` | Optional local web UI, drag and drop the worksheet in a browser instead of using the command line. |
+| `watch_and_generate.py` | Optional folder watcher, auto regenerates the summary whenever any `.xlsx` in a folder changes. |
 | `requirements.txt` | Python dependencies. |
 | `Worksheet_23.07.2026.xlsx` | Sample input worksheet. |
 | `Summary_23_07_2026.docx` | Sample output report. |
@@ -69,8 +69,8 @@ python3 generate_spi_summary.py --excel Worksheet_DD_MM_YYYY.xlsx --output Summa
 
 Optional flags:
 
-- `--template` — path to a different `.docx` template (defaults to `spi_template.docx`)
-- `--history` — path to a different history CSV (defaults to `spi_history.csv`)
+- `--template`: path to a different `.docx` template (defaults to `spi_template.docx`)
+- `--history`:  path to a different history CSV (defaults to `spi_history.csv`)
 
 Keep `spi_history.csv` next to the script and reuse the same file every week
 so the 5-week comparison table stays accurate.
@@ -99,7 +99,7 @@ updated (e.g. saved from Excel):
 python3 watch_and_generate.py --dir "/path/to/your/SPI folder"
 ```
 
-This doesn't care what the `.xlsx` file is named — it opens each changed
+This doesn't care what the `.xlsx` file is named, it opens each changed
 workbook, reads the report date from the `Impact Combined` sheet, and names
 the output accordingly. Files that don't look like SPI worksheets (no
 matching sheet/row) are skipped automatically. Leave it running and stop it
@@ -111,7 +111,7 @@ with `Ctrl+C`.
   (e.g. "Wheat Flour Bag" → "Wheat Flour") to match the style of the
   original reports; unmapped items fall back to their full worksheet
   description.
-- Year-on-year **increases** are only called out by name once they pass a
+- Year on year **increases** are only called out by name once they pass a
   configurable threshold (`YOY_INCREASE_THRESHOLD`, default 13%), matching
   the convention of the original reports. All other change lists include
   every non-zero item.
